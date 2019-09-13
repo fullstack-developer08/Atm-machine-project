@@ -1,10 +1,12 @@
 
+import { ATMCardInformation, SearchedCardResponse } from './ATMInterface';
+
 export class ATM {
     public errorOnCardRead: string;
     public proceedwithCardForOTP: string;
 
 
-    constructor() {
+    constructor(atmService: ATMService) {
 
     }
 
@@ -22,10 +24,10 @@ export class ATM {
             let nameOnCard = form.value.nameOnCard;
             let expiryDate = form.value.expiryDate;
             if (cardNo !== null && cardNo !== undefined) {
-                //make call to API/bank database and get the card details like name and expiry
-                if (cardNo === '1111 1111 1111 1111') {
+                const responseForCard: SearchedCardResponse = this.atmService.searchForCard(cardNo);
+                if (cardNo === responseForCard.cardNo) {
                     //If card no is valid make call to API/database to get card details and if data is true then need to send OTP
-                    if (nameOnCard === 'Md Arif Khan' && expiryDate === '04/2021') {
+                    if (nameOnCard === responseForCard.nameOnCard && expiryDate === responseForCard.expiryDate) {
                         this.proceedwithCardForOTP = 'we have sent an OTP to your registerd mobile no'
                     }
                 }
@@ -33,10 +35,7 @@ export class ATM {
                 else {
                     this.errorOnCardRead = 'Card no is invalid. Please check your card number.'
                 }
-
-
             }
-
         }
     }
 

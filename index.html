@@ -2,15 +2,35 @@
 <html>
 
 <head>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
     <header>
         <h1>ATM Machine Project</h1>
     </header>
-    <div>
-
+    <div class="container">
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="cardNo">Card No</label>
+                <input type="text" name="cardNo" id="cardFor" placeholder="Enter your card no"
+                    formControlName="cardFor">
+            </div>
+            <div class="form-group">
+                <label for="nameOnCard">Name on Card</label>
+                <input type="text" name="cardNo" id="nameOnCard" placeholder="Enter your name"
+                    formControlName="cardFor">
+            </div>
+            <div class="form-group">
+                <label for="expiryDate">Card Expiry Date</label>
+                <input type="text" name="expiryDate" id="expiryDate" placeholder="Enter your card no"
+                    formControlName="expiryDate">
+            </div>
+            <div class="form-group">
+                <button>Submit</button>
+            </div>
+        </form>
     </div>
     <footer>
 

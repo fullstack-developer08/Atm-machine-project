@@ -7,6 +7,6 @@ const AllBankAPI = 'https://testbank.data.carddetails'
 export class ATMService {
 
     public searchForCard(cardNo: number) {
-
+        this.http.post(AllBankAPI, cardNo).map(data => data.json());
     }
 }
