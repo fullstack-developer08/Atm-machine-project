@@ -1,21 +1,25 @@
 
 import { ATMCardInformation, SearchedCardResponse } from './ATMInterface';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class ATM {
     public errorOnCardRead: string;
     public proceedwithCardForOTP: string;
 
-
     constructor(atmService: ATMService) {
-
-    }
-
-    ngOnInit() {
-        form = new FormGroup({
+        ATMInfoForm = new FormGroup({
             cardNo: new FormControl('', [Validators.required, Validators.minlength]),
             nameOnCard: new FormControl('', [Validators.required]),
             expiryDate: new FormControl('', [Validators.required, Validators.date])
         });
+
+        otpForm = new FormGroup({
+            otpNo: new FormControl('', [Validators.required, Validators.minlength])
+        });
+    }
+
+    ngOnInit() {
+        // this is good place for Redux/Observable programming operation
     }
 
     cardSubmitHandler = (form: FormGroup): void => {
@@ -39,15 +43,29 @@ export class ATM {
         }
     }
 
-    get cardNo() {
+
+    otpSubmitHandler = (form: FormGroup): boolean => {
+        if (form.value !== null && form.value !== undefined) {
+            let otp = form.value.otp;
+            if (otp !== null && otp !== undefined) {
+                // need to proceed if data is matched from database
+            }
+        }
+    }
+
+    get cardNo(): number {
         return this.form.get('cardNo');
     }
 
-    get nameOnCard() {
+    get nameOnCard(): string {
         return this.form.get('nameOnCard');
     }
 
-    get expiryDate() {
+    get expiryDate(): string {
         return this.form.get('expiryDate');
+    }
+
+    ngOnDestroy() {
+        // this is good place for unsubscribe the observable to save the memory when component is not in use
     }
 }

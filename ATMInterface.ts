@@ -14,3 +14,9 @@ interface SearchedCardResponse {
     expiryDate?: string;
 }
 
+interface ATMServices {
+    isWithdrawIsClicked: boolean;
+    isBalanceCheckClicked: boolean;
+    isATMPINChangeCliked: boolean;
+    isOTPSentOnMobile: boolean;
+}
